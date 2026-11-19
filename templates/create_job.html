@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Create Job | HireTrack{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Post a New Job</h2>
+    <form method="POST" class="mt-4">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label>Job Title</label>
+            <input type="text" name="title" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Company Name</label>
+            <input type="text" name="company_name" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Job Description</label>
+            <textarea name="description" class="form-control" rows="4" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label>Location</label>
+            <input type="text" name="location" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Job Type</label>
+            <select name="job_type" class="form-select" required>
+                <option value="FULL_TIME">Full Time</option>
+                <option value="PART_TIME">Part Time</option>
+                <option value="INTERNSHIP">Internship</option>
+                <option value="CONTRACT">Contract</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label>Minimum Salary</label>
+            <input type="number" name="salary_min" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Maximum Salary</label>
+            <input type="number" name="salary_max" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Experience Required (Years)</label>
+            <input type="number" name="experience_required" class="form-control" min="0" required>
+        </div>
+        <div class="mb-3">
+            <label>Required Skills</label>
+            <textarea name="skills_required" class="form-control" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            Post Job
+        </button>
+        <a href="{% url 'recruiter_jobs' %}" class="btn btn-secondary">
+            Cancel
+        </a>
+    </form>
+</div>
+{% endblock %}

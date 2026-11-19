@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Applicants | HireTrack{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Job Applications</h2>
+    {% if applications %}
+    <div class="row mt-4">
+        {% for application in applications %}
+        <div class="col-md-6 mb-3">
+            <div class="card p-3">
+                <h5>{{ application.applicant.username }}</h5>
+                <p>
+                    <strong>Job:</strong>
+                    {{ application.job.title }}
+                </p>
+                <p>
+                    <strong>Company:</strong>
+                    {{ application.job.company_name }}
+                </p>
+                <p>
+                    <strong>Email:</strong>
+                    {{ application.applicant.email }}
+                </p>
+                <p>
+                    <strong>Applied On:</strong>
+                    {{ application.applied_at|date:"d M Y" }}
+                </p>
+                <p>
+                    <strong>Status:</strong>
+                    {{ application.status }}
+                </p>
+                <p>
+                    <strong>Cover Letter:</strong>
+                    {{ application.cover_letter|default:"Not provided" }}
+                </p>
+                <form method="POST" action="{% url 'update_application_status' application.id %}">
+                    {% csrf_token %}
+                    <div class="mb-2">
+                        <label>Update Application Status</label>
+                        <select name="status" class="form-select">
+                            <option value="UNDER_REVIEW">Under Review</option>
+                            <option value="SHORTLISTED">Shortlisted</option>
+                            <option value="REJECTED">Rejected</option>
+                            <option value="SELECTED">Selected</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        Update Status
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No applications received yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

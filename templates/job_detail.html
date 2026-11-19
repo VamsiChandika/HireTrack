@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}{{ job.title }} | HireTrack{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card p-4">
+        <h2>{{ job.title }}</h2>
+        <hr>
+        <p><strong>Company:</strong> {{ job.company_name }}</p>
+        <p><strong>Location:</strong> {{ job.location }}</p>
+        <p><strong>Job Type:</strong> {{ job.job_type }}</p>
+        <p><strong>Experience Required:</strong> {{ job.experience_required }} years</p>
+        <p><strong>Salary:</strong>
+            ₹{{ job.salary_min }} - ₹{{ job.salary_max }}
+        </p>
+        <p><strong>Skills Required:</strong> {{ job.skills_required }}</p>
+        <h4 class="mt-3">Job Description</h4>
+        <p>{{ job.description }}</p>
+        <hr>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert
+                    {% if message.tags == 'success' %}alert-success
+                    {% elif message.tags == 'warning' %}alert-warning
+                    {% elif message.tags == 'error' %}alert-danger
+                    {% else %}alert-info{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% elif already_applied %}
+            <p class="text-success fw-bold">
+                You have already applied for this job.
+            </p>
+        {% endif %}
+        {% if user.is_authenticated and user.role == 'JOB_SEEKER' %}
+            {% if not already_applied %}
+                <form method="POST" action="{% url 'apply_job' job.id %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Cover Letter</label>
+                        <textarea
+                            name="cover_letter"
+                            class="form-control"
+                            rows="5"
+                            placeholder="Write your cover letter here..."
+                        ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Apply Now
+                    </button>
+                </form>
+            {% endif %}
+        {% elif not user.is_authenticated %}
+            <a href="{% url 'login' %}" class="btn btn-primary">
+                Login to Apply
+            </a>
+        {% endif %}
+        <a href="{% url 'jobs' %}" class="btn btn-secondary mt-3">
+            Back to Jobs
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}My Posted Jobs | HireTrack{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2>My Posted Jobs</h2>
+    <a href="{% url 'create_job' %}" class="btn btn-success mt-3">
+        + Post New Job
+    </a>
+    {% if jobs %}
+    <div class="row mt-4">
+        {% for job in jobs %}
+        <div class="col-md-6 mb-4">
+            <div class="card p-3 h-100">
+                <h5>{{ job.title }}</h5>
+                <p>{{ job.company_name }}</p>
+                <p>{{ job.location }}</p>
+                <p>Job Type: {{ job.job_type }}</p>
+                <p>
+                    Status:
+                    {% if job.is_active %}
+                        Active
+                    {% else %}
+                        Inactive
+                    {% endif %}
+                </p>
+                <a href="{% url 'edit_job' job.id %}"
+                   class="btn btn-warning w-100 mb-2">
+                    Edit Job
+                </a>
+                <form method="POST" action="{% url 'delete_job' job.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger w-100">
+                        Delete Job
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p>You have not posted any jobs yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

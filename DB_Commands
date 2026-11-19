@@ -1,0 +1,18 @@
+1.
+CREATE DATABASE hiretrack_db
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+USE hiretrack_db;
+
+SHOW DATABASES;
+
+
+2.
+CREATE USER 'vamsich1123'
+IDENTIFIED BY 'vamsiiii@20i04iABC';
+
+GRANT ALL PRIVILEGES ON hiretrack_db.*
+TO 'vamsich1123';
+
+FLUSH PRIVILEGES;

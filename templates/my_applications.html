@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}My Applications | HireTrack{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">My Applications</h2>
+    <div class="row g-4">
+        {% for application in applications %}
+        <div class="col-md-6">
+            <div class="card p-4 h-100">
+                <h4>{{ application.job.title }}</h4>
+                <p><strong>Company:</strong> {{ application.job.company_name }}</p>
+                <p><strong>Location:</strong> {{ application.job.location }}</p>
+                <p><strong>Applied On:</strong> {{ application.applied_at|date:"d M Y" }}</p>
+                <p>
+                    <strong>Status:</strong>
+                    <span class="badge bg-primary">
+                        {{ application.status }}
+                    </span>
+                </p>
+                <a href="{% url 'job_detail' application.job.id %}"
+                   class="btn btn-outline-primary">
+                    View Job
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                You haven't applied for any jobs yet.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+
+{% extends "base.html" %}
+{% block title %}Resume Management | HireTrack{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h2 class="mb-4">Resume Management</h2>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if profile.resume %}
+            <div class="alert alert-success">
+                <strong>Current Resume:</strong>
+                <a href="{{ profile.resume.url }}" target="_blank">
+                    View Uploaded Resume
+                </a>
+            </div>
+        {% else %}
+            <p class="text-muted">No resume uploaded yet.</p>
+        {% endif %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Upload Resume</label>
+                <input
+                    type="file"
+                    name="resume"
+                    class="form-control"
+                    accept=".pdf,.doc,.docx"
+                    required
+                >
+                <small class="text-muted">
+                    Allowed formats: PDF, DOC, DOCX. Maximum size: 5 MB.
+                </small>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                Upload Resume
+            </button>
+            <a href="{% url 'dashboard' %}" class="btn btn-secondary">
+                Back to Dashboard
+            </a>
+        </form>
+    </div>
+</div>
+{% endblock %}

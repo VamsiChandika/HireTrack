@@ -1,0 +1,30 @@
+1. Environment Setup – Install Python, VS Code and MySQL Server.
+2. Virtual Environment – Create and activate myenv.
+3. Install Dependencies – Install Django, Django REST Framework, mysqlclient and Pillow.
+4. Create Django Project – Create the config project.
+5. Create MySQL Database – Create hiretrack_db using MySQL Workbench.
+6. Configure Database Connection – Connect Django with MySQL.
+7. Django Version Compatibility – Install Django 5.2.19 for MySQL 8.0.46.
+8. Create Django App – Create the accounts app.
+9. Custom User Model – Create a custom user model using AbstractUser.
+10. Configure Settings – Add accounts, DRF and AUTH_USER_MODEL in settings.py.
+11. Database Migrations – Generate and apply migrations.
+12. Django Admin Configuration – Register the custom user model in admin.py.
+13. Run Django Server – Start the server and prepare to verify the Admin dashboard.
+14. Candidate Profile Management
+15. Recruiter Profile Management
+16. Job Posting and Management
+17. Job Search and Filtering
+18. Job Application Management
+19. Resume Upload System
+20. Application Status Tracking
+21. REST API Development
+22. Frontend Development
+23. Candidate Dashboard
+24. Recruiter Dashboard
+25. Admin Dashboard
+26. Skill-Based Job Matching
+27. Testing and Bug Fixing
+28. GitHub Integration
+29. Deployment
+30. Final Project Documentation and Interview Preparation

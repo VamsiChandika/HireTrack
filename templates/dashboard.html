@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | HireTrack{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Welcome, {{ user.username }}!</h2>
+    <p class="text-muted">
+        <h5>Your Role: {{ user.get_role_display }}</h5>
+    </p>
+    <hr>
+    <h4 class="mb-4">Dashboard Statistics</h4>
+    <div class="row g-4">
+        {% if user.role == 'JOB_SEEKER' %}
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Total Applications</h5>
+                <h2>{{ stats.total_applications }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Under Review</h5>
+                <h2>{{ stats.under_review }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Shortlisted</h5>
+                <h2>{{ stats.shortlisted }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Selected</h5>
+                <h2>{{ stats.selected }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Rejected</h5>
+                <h2>{{ stats.rejected }}</h2>
+            </div>
+        </div>
+        {% elif user.role == 'RECRUITER' %}
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Total Jobs</h5>
+                <h2>{{ stats.total_jobs }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Active Jobs</h5>
+                <h2>{{ stats.active_jobs }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Total Applications</h5>
+                <h2>{{ stats.total_applications }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Under Review</h5>
+                <h2>{{ stats.under_review }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Shortlisted</h5>
+                <h2>{{ stats.shortlisted }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Selected</h5>
+                <h2>{{ stats.selected }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Rejected</h5>
+                <h2>{{ stats.rejected }}</h2>
+            </div>
+        </div>
+        {% elif user.role == 'ADMIN' %}
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Total Users</h5>
+                <h2>{{ stats.total_users }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Job Seekers</h5>
+                <h2>{{ stats.total_job_seekers }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Recruiters</h5>
+                <h2>{{ stats.total_recruiters }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Total Jobs</h5>
+                <h2>{{ stats.total_jobs }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Active Jobs</h5>
+                <h2>{{ stats.active_jobs }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Total Applications</h5>
+                <h2>{{ stats.total_applications }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Inactive Jobs</h5>
+                <h2>{{ stats.inactive_jobs }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Under Review Applications</h5>
+                <h2>{{ stats.under_review }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Shortlisted Applications</h5>
+                <h2>{{ stats.shortlisted }}</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Rejected Applications</h5>
+                <h2>{{ stats.rejected }}</h2>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
